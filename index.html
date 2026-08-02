@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no">
+<title>Chirp — Say It Right</title>
+<meta name="description" content="A speak-out-loud English app for kids. Say the word, get a pronunciation score, level up.">
+<meta name="theme-color" content="#26C1FC">
+<meta name="color-scheme" content="light">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Chirp">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+<link rel="icon" href="./icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap"
+      onload="this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap"></noscript>
+<link rel="stylesheet" href="./css/app.css">
+</head>
+<body>
+  <div id="app">
+    <div class="screen" id="splash" style="align-items:center;justify-content:center;gap:14px;
+         background:linear-gradient(180deg,#5FCBFF,#1E9AE0);color:#fff">
+      <div style="font-size:64px">🐣</div>
+      <div style="font-size:32px;font-weight:900;letter-spacing:-.5px">Chirp</div>
+      <div style="font-weight:800;opacity:.9">Say it out loud</div>
+    </div>
+  </div>
+  <noscript><p style="padding:24px;font-family:system-ui">Chirp needs JavaScript to run.</p></noscript>
+  <script type="module" src="./js/app.js"></script>
+  <script>
+    // remove the splash once the module has taken over
+    setTimeout(() => { const s = document.getElementById('splash'); if (s && s.parentElement.children.length > 1) s.remove(); }, 50);
+  </script>
+</body>
+</html>

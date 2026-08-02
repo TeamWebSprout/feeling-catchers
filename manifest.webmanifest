@@ -1,0 +1,26 @@
+{
+  "name": "Chirp — Say It Right",
+  "short_name": "Chirp",
+  "description": "A speak-out-loud English app for kids. Say the word, get a pronunciation score, level up.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "fullscreen", "minimal-ui"],
+  "orientation": "portrait",
+  "background_color": "#26C1FC",
+  "theme_color": "#26C1FC",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["education", "kids"],
+  "icons": [
+    { "src": "./icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "./icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "./icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Pronunciation Gym", "short_name": "Gym", "url": "./index.html#train",
+      "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "My words", "short_name": "Words", "url": "./index.html#dict",
+      "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}
