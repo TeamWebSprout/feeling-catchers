@@ -1,0 +1,72 @@
+name: Deploy to GitHub Pages
+
+# Every push to main redeploys. The stamp step below rewrites the service
+# worker's cache version with the commit SHA, which means a deploy can never
+# silently fail to reach an installed tester because someone forgot to bump
+# CACHE_VERSION by hand. That is the single most likely operational mistake
+# with this app, so it is automated rather than documented.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Stamp the build with the commit SHA
+        run: |
+          SHA=$(echo "${GITHUB_SHA}" | cut -c1-7)
+          echo "Stamping build $SHA"
+
+          # cache-bust the service worker on every single deploy
+          sed -i -E "s/(const CACHE_VERSION = 'fc-v[0-9]+\.[0-9]+\.[0-9]+)'/\1-${SHA}'/" sw.js
+
+          # make the running build identifiable in the parent panel and in exports
+          sed -i -E "s/(const APP_VERSION = '[0-9]+\.[0-9]+\.[0-9]+)'/\1+${SHA}'/" index.html
+
+          echo "--- result ---"
+          grep -n "^const CACHE_VERSION" sw.js
+          grep -n "^const APP_VERSION" index.html
+
+      - name: Fail if the stamp did not apply
+        run: |
+          grep -q "fc-v[0-9.]*-[0-9a-f]\{7\}" sw.js || { echo "::error::CACHE_VERSION was not stamped"; exit 1; }
+          grep -q "APP_VERSION = '[0-9.]*+[0-9a-f]\{7\}'" index.html || { echo "::error::APP_VERSION was not stamped"; exit 1; }
+
+      - name: Assemble the site (app files only, no tests or docs)
+        run: |
+          mkdir -p _site
+          cp index.html sw.js manifest.webmanifest _site/
+          cp -r icons _site/icons
+          rm -f _site/icons/source-*.svg
+          touch _site/.nojekyll
+          echo "--- shipping ---"
+          find _site -type f | sort
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
