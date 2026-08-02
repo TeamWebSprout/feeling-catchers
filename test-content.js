@@ -139,7 +139,7 @@ const TARGETS = [
   check('six feelings + sunny on the island', entry.feelings === 7, JSON.stringify(entry));
   check('three situation entries', entry.situations === 3);
   check('empty collection shows 3 mystery slots, not 11', entry.palSlots === 3, 'slots ' + entry.palSlots);
-  check('collection size still communicated', /0 of 11/.test(entry.palCount) && /8 more/.test(entry.more),
+  check('collection size still communicated', /0 of 15/.test(entry.palCount) && /12 more/.test(entry.more),
     entry.palCount + ' | ' + entry.more);
 
   // ---------- discovery gating, before anything is played ----------

@@ -110,7 +110,7 @@ const check = (name, cond, extra) => (cond ? ok : fail).push(name + (extra ? ' â
   });
   check('localStorage has the pal', stored.lsPals === 1, JSON.stringify(stored));
   check('IndexedDB mirror has the pal', stored.idbPals === 1, JSON.stringify(stored));
-  check('mirror is version-stamped', stored.ver === '0.7.1', String(stored.ver));
+  check('mirror is version-stamped', stored.ver === '0.8.0', String(stored.ver));
 
   // ---------- 6. recovery when localStorage is wiped ----------
   await page.evaluate(() => localStorage.removeItem('fc.state'));
@@ -134,7 +134,7 @@ const check = (name, cond, extra) => (cond ? ok : fail).push(name + (extra ? ' â
   check('health table populated', healthRows >= 6, 'rows ' + healthRows);
   const exportJson = JSON.parse(await page.inputValue('#export-box'));
   check('export includes storage diagnostics', !!exportJson.storage && typeof exportJson.storage.indexedDB === 'boolean');
-  check('export build stamped 0.7.1', exportJson.build === '0.7.1');
+  check('export build stamped 0.8.0', exportJson.build === '0.8.0');
   await page.screenshot({ path: 'pwa-parent.png', fullPage: true });
 
   // ---------- 8. shortcut deep link ----------

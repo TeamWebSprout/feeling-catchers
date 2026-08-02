@@ -1,4 +1,4 @@
-# Feeling Catchers — PWA build 0.7.1
+# Feeling Catchers — PWA build 0.8.0
 
 Installable, offline-first, no backend, no accounts, no analytics, no network calls at runtime. Everything the child does stays on their device.
 
@@ -23,6 +23,9 @@ test-content.js          34 checks: all 11 mechanics, discovery gating, variatio
 CONTENT-0.6.md           what the content expansion added and why
 test-journey.js          39 checks: the jar, milestones, ratings, honesty of the card
 PROGRESS-0.7.md          the parent progress section and its design constraints
+test-speech.js           32 checks: the voice engine, driven by a synthesised mic
+make-fake-audio.js       generates the WAV used as Chromium's fake microphone
+SPEECH-0.8.md            why speech is the product and why there is no recogniser
 audit-mobile.js          PWA installability + mobile layout audit across 6 viewports
 ```
 

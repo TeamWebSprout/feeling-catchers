@@ -1,24 +1,53 @@
 {
   "name": "Feeling Catchers",
   "short_name": "Feelings",
-  "description": "A calm-down game for children aged 4-7. Settle four feeling creatures with breathing, tracing, rhythm and grounding. Works offline. Nothing leaves the device.",
+  "description": "Speech practice for children with delayed talking, aged 4-7. Creature games that get your child making sounds and words, built around conversational turns. Works offline. Nothing leaves the device.",
   "id": "/feeling-catchers/",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "display_override": ["standalone", "minimal-ui"],
+  "display_override": [
+    "standalone",
+    "minimal-ui"
+  ],
   "orientation": "portrait",
   "background_color": "#141a30",
   "theme_color": "#141a30",
-  "categories": ["health", "education", "kids", "lifestyle"],
+  "categories": [
+    "health",
+    "education",
+    "kids",
+    "medical",
+    "lifestyle"
+  ],
   "lang": "en",
   "dir": "ltr",
   "prefer_related_applications": false,
   "icons": [
-    { "src": "./icons/icon-192.png",     "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "./icons/icon-512.png",     "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "./icons/maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
-    { "src": "./icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "./icons/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ],
   "screenshots": [
     {
@@ -26,37 +55,47 @@
       "sizes": "780x1688",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Pick the weather that matches how you feel"
+      "label": "Pick a pal who wants to hear your voice"
     },
     {
       "src": "./icons/shot-narrow-2.png",
       "sizes": "780x1688",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Settle the creature with a calming activity"
+      "label": "Say a word back and hear it grown by one"
     },
     {
       "src": "./icons/shot-wide-1.png",
       "sizes": "1024x768",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "Six feelings, three situations, eleven pals to meet"
+      "label": "Speech games, calming games, and a parent panel"
     }
   ],
   "shortcuts": [
     {
-      "name": "Sunny practice",
-      "short_name": "Practice",
-      "description": "Start a calm-day practice session",
-      "url": "./?go=sunny",
-      "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192" }]
+      "name": "Talk with Chatter",
+      "short_name": "Talk",
+      "description": "Start a say-it-back session",
+      "url": "./?go=talk",
+      "icons": [
+        {
+          "src": "./icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
     },
     {
       "name": "Grown-ups",
       "short_name": "Grown-ups",
       "description": "Open the parent dashboard",
       "url": "./?go=parent",
-      "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192" }]
+      "icons": [
+        {
+          "src": "./icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
     }
   ]
 }

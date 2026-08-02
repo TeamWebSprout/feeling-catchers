@@ -26,7 +26,7 @@ const check = (n, c, x) => { out.push((c ? '  ✓ ' : '  ✗ ') + n + (x ? ' —
     await page.waitForTimeout(1000);
 
     const v1 = await page.evaluate(async () => (await caches.keys())[0]);
-    allOk &= check('initial build cached', v1 === 'fc-v0.7.1', v1);
+    allOk &= check('initial build cached', v1 === 'fc-v0.8.0', v1);
     allOk &= check('update bar hidden before any deploy',
       !(await page.isVisible('#update-bar')));
 
@@ -48,7 +48,7 @@ const check = (n, c, x) => { out.push((c ? '  ✓ ' : '  ✗ ') + n + (x ? ' —
     allOk &= check('state exists before update', before === 1, 'pals ' + before);
 
     // --- "deploy" a new build ---
-    fs.writeFileSync(SW, original.replace("fc-v0.7.1", "fc-v0.7.2"));
+    fs.writeFileSync(SW, original.replace("fc-v0.8.0", "fc-v0.8.1"));
     await page.evaluate(async () => {
       const reg = await navigator.serviceWorker.getRegistration();
       await reg.update();
@@ -57,7 +57,7 @@ const check = (n, c, x) => { out.push((c ? '  ✓ ' : '  ✗ ') + n + (x ? ' —
 
     allOk &= check('new build detected and offered', await page.isVisible('#update-bar'));
     allOk &= check('old build still running until the parent accepts',
-      (await page.evaluate(async () => (await caches.keys()).includes('fc-v0.7.1'))));
+      (await page.evaluate(async () => (await caches.keys()).includes('fc-v0.8.0'))));
 
     // --- accept it ---
     await page.click('#update-now');
@@ -67,8 +67,8 @@ const check = (n, c, x) => { out.push((c ? '  ✓ ' : '  ✗ ') + n + (x ? ' —
       caches: await caches.keys(),
       pals: Object.keys(JSON.parse(localStorage.getItem('fc.state') || '{}').pals || {}).length
     }));
-    allOk &= check('new build is now live', after.caches.includes('fc-v0.7.2'), after.caches.join(','));
-    allOk &= check('old cache cleaned up', !after.caches.includes('fc-v0.7.1'), after.caches.join(','));
+    allOk &= check('new build is now live', after.caches.includes('fc-v0.8.1'), after.caches.join(','));
+    allOk &= check('old cache cleaned up', !after.caches.includes('fc-v0.8.0'), after.caches.join(','));
     allOk &= check('tester data survived the update', after.pals === 1, 'pals ' + after.pals);
     allOk &= check('update bar cleared after applying', !(await page.isVisible('#update-bar')));
   } finally {

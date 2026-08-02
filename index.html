@@ -240,6 +240,49 @@
     font-size:15px;font-weight:600;opacity:0;pointer-events:none;transition:.28s;z-index:99}
   .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 
+  /* ---------- speech: wait ring, level meter, turn pill ---------- */
+  .ringwrap{position:relative;width:min(34vw,150px);height:min(34vw,150px);display:grid;place-items:center}
+  .waitring{position:absolute;inset:0;width:100%;height:100%}
+  .waitring circle{transition:none}
+  .ringmid{font-size:16px;font-weight:800;color:var(--ink-soft);text-align:center;padding:0 10px;line-height:1.25}
+  .vumeter{width:min(78vw,340px);height:14px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden}
+  .vumeter > i{display:block;height:100%;width:100%;transform:scaleX(.06);transform-origin:left center;
+    border-radius:99px;background:linear-gradient(90deg,#8ee6a8,#ffd479);transition:transform .06s linear}
+  .micoff{font-size:13px;color:#ffcf9a;background:rgba(255,180,110,.12);border:1px solid rgba(255,180,110,.3);
+    border-radius:12px;padding:8px 12px;max-width:min(92vw,440px);text-align:center;line-height:1.35}
+  #turn-pill{background:linear-gradient(180deg,#8ee6a8,#bff0cd);color:#123a24;font-weight:800;transition:transform .2s}
+  #turn-pill.pop{transform:scale(1.22)}
+
+  /* ---------- gulp: the gate ---------- */
+  .temptrow{display:flex;align-items:center;justify-content:center;gap:18px}
+  .gate{position:relative;width:min(30vw,126px);height:min(30vw,126px);border-radius:18px;
+    background:rgba(255,255,255,.06);border:2px solid var(--card-line);display:grid;place-items:center;overflow:hidden}
+  .gate .prize{font-size:min(14vw,54px);transition:transform .5s cubic-bezier(.34,1.5,.6,1)}
+  .gatebars{position:absolute;inset:0;background:repeating-linear-gradient(90deg,
+    rgba(190,205,240,.55) 0 6px, transparent 6px 22px);transition:transform .55s ease, opacity .55s ease}
+  .gate.open .gatebars{transform:translateY(-102%);opacity:0}
+  .gate.open .prize{transform:scale(1.25)}
+
+  /* ---------- pip: choices ---------- */
+  .choicerow{display:flex;gap:14px}
+  .choicecard{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 16px;min-width:118px;
+    min-height:118px;justify-content:center;border-radius:var(--r-md);background:var(--card);border:1px solid var(--card-line)}
+  .choicecard .ca{font-size:42px;line-height:1}
+  .choicecard .cn{font-size:15px;font-weight:700}
+  .choicecard:active{transform:scale(.96)}
+
+  /* ---------- milestone checklist ---------- */
+  .ms-check{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08);cursor:pointer}
+  .ms-check:last-of-type{border-bottom:0}
+  .ms-box{width:26px;height:26px;border-radius:8px;border:2px solid var(--card-line);flex:0 0 auto;margin-top:2px;
+    display:grid;place-items:center;font-size:16px;color:#123a24}
+  .ms-check.yes .ms-box{background:var(--ok);border-color:transparent}
+  .ms-check .mt{font-size:14.5px;line-height:1.4}
+  .flag{border-radius:var(--r-md);padding:14px 16px;margin-top:14px;font-size:14px;line-height:1.5}
+  .flag.ok{background:rgba(142,230,168,.12);border:1px solid rgba(142,230,168,.35)}
+  .flag.watch{background:rgba(255,212,121,.12);border:1px solid rgba(255,212,121,.4)}
+  .flag.refer{background:rgba(255,150,150,.12);border:1px solid rgba(255,150,150,.4)}
+
   /* ---------- squeeze (PMR) ---------- */
   .squeeze-meter{width:min(80vw,360px);height:16px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}
   .squeeze-meter > i{display:block;height:100%;width:0%;border-radius:99px;background:linear-gradient(90deg,#c2a3e8,#efdcff)}
@@ -462,16 +505,20 @@
     <div class="grow stack" style="justify-content:flex-start;max-width:520px;margin:0 auto;width:100%">
       <h1>Read this first. It takes 40 seconds.</h1>
       <div class="card stack">
-        <h2>Stay in the room.</h2>
-        <p>This app is a <b>prop for you and your child together</b>, not a babysitter. The research on handing a device to a distressed young child is not encouraging. What works is co-regulation: your calm nervous system next to theirs.</p>
+        <h2>This app cannot teach your child to talk. You can.</h2>
+        <p>Children learn words markedly worse from a screen than from a person. So this app has one job: <b>get your child to make a sound, then get out of the way so you can answer.</b> Play it sitting with them, not handing it over.</p>
       </div>
       <div class="card stack">
-        <h2>Breathe along out loud.</h2>
-        <p>When the creature breathes, you breathe. Audibly. Your child will copy you long before they copy a cartoon.</p>
+        <h2>The silence is the exercise.</h2>
+        <p>Adults usually wait one or two seconds for a reply. A child with delayed speech often needs <b>five to ten</b>. When the green ring is counting, say nothing at all. It will feel rude. It is the most useful thing you will do.</p>
       </div>
       <div class="card stack">
-        <h2>The real goal is practice on calm days.</h2>
-        <p>Creatures only grow when you play during good moods. A skill rehearsed at 8pm Tuesday is the skill available at meltdown o'clock.</p>
+        <h2>Say it back, plus one word.</h2>
+        <p>They say “ball”, you say “big ball”. They say “uh”, you say “up!”. Never correct, never ask them to say it again properly. Just hand it back one word bigger.</p>
+      </div>
+      <div class="card stack">
+        <h2>Settle first if you need to.</h2>
+        <p>An overwhelmed child will not talk. The calming games further down the island are the way in, not a different app.</p>
       </div>
       <button class="btn primary" data-go="island">I've got it, let's start</button>
       <p class="note center">No account. No ads. Nothing leaves this device. All data is stored locally and you can wipe it from the Grown-ups panel.</p>
@@ -485,8 +532,13 @@
       <button class="iconbtn" id="btn-parent" aria-label="Grown-ups">⚙</button>
     </div>
     <div class="stack" style="max-width:520px;margin:0 auto;width:100%">
-      <h1 style="font-size:clamp(23px,6vw,32px)">How does the island feel right now?</h1>
-      <p style="margin-bottom:4px">Tap the weather that matches you.</p>
+      <h1 style="font-size:clamp(23px,6vw,32px)">Let's talk!</h1>
+      <p style="margin-bottom:4px">Pick a pal who wants to hear your voice.</p>
+      <div class="weather-grid" id="speech-grid"></div>
+
+      <div class="hr"></div>
+      <h2 style="margin:0 0 2px">Too wobbly to talk?</h2>
+      <p class="note" style="margin:0 0 10px">Settle first. A child who is overwhelmed will not talk, so this is the way in, not a detour.</p>
       <div class="weather-grid" id="wx-grid"></div>
 
       <div class="hr"></div>
@@ -525,7 +577,7 @@
     <div class="topbar">
       <button class="iconbtn" id="btn-quit" aria-label="Back">‹</button>
       <div class="steps" id="play-steps"></div>
-      <div style="width:46px"></div>
+      <span class="pill" id="turn-pill" style="display:none">0 turns</span>
     </div>
     <div class="stage" id="play-stage"></div>
     <div class="stack" style="align-items:center;max-width:520px;margin:0 auto;width:100%">
@@ -660,8 +712,26 @@
       <button class="btn primary" data-go="journey" id="btn-journey">Your journey &amp; the jar</button>
 
       <div class="card">
+        <h2>Talking</h2>
+        <div class="statrow">
+          <div class="stat"><b id="sp-turns">0</b><span>conversational turns</span></div>
+          <div class="stat"><b id="sp-sess">0</b><span>talking sessions</span></div>
+          <div class="stat"><b id="sp-avg">—</b><span>turns per session</span></div>
+        </div>
+        <div class="hr"></div>
+        <p class="note" id="sp-note"></p>
+      </div>
+
+      <div class="card">
         <h2>What to say next time</h2>
         <p class="note" id="coach-card"></p>
+      </div>
+
+      <div class="card">
+        <h2>Is this a delay?</h2>
+        <p class="note">Tick what your child <b>can</b> do now. This is not a test and it is not a diagnosis. It exists to help you decide whether to get a proper assessment.</p>
+        <div id="check-list" style="margin-top:12px"></div>
+        <div id="check-verdict"></div>
       </div>
 
       <div class="card">
@@ -753,7 +823,7 @@
 <script>
 "use strict";
 
-const APP_VERSION = '0.7.1';
+const APP_VERSION = '0.8.0';
 
 /* =========================================================
    0. STORAGE — dual-write, eviction-tolerant, never throws
@@ -874,7 +944,10 @@ const DEFAULT_STATE = {
   wins:[],            // {t, type, note} — the parent's own log
   ratings:{},         // session timestamp -> 0 | 1 | 2 ("did it help?")
   milestones:{},      // key -> timestamp first earned. Never removed.
-  settings:{ voice:true, sound:true, reduceMotion:false, longExhale:false }
+  turns:0,            // lifetime conversational turns — the headline metric
+  checklist:{},       // milestone-checklist answers, parent-reported
+  checklistAt:0,
+  settings:{ voice:true, sound:true, reduceMotion:false, longExhale:false, soundsNotWords:false }
 };
 function normalise(raw){
   const s = Object.assign({}, DEFAULT_STATE, raw || {});
@@ -883,6 +956,7 @@ function normalise(raw){
   s.feelingCounts = s.feelingCounts || {}; s.rotation = s.rotation || {};
   s.wins = Array.isArray(s.wins) ? s.wins : [];
   s.ratings = s.ratings || {}; s.milestones = s.milestones || {};
+  s.turns = s.turns || 0; s.checklist = s.checklist || {}; s.checklistAt = s.checklistAt || 0;
   return s;
 }
 const pick = arr => arr[Math.floor(Math.random()*arr.length)];
@@ -1130,6 +1204,78 @@ const ART = {
         : `<path d="M54 156 q10 -6 20 0" stroke="#1e3d55" stroke-width="4" fill="none" stroke-linecap="round"/>`}
     </svg>`;
   },
+  /* ---- speech pals ---- */
+  chatter(calm){
+    const g = uid('cg');
+    const a = calm ? '#7fd6a8' : '#4fc08d', b = calm ? '#d6f7e6' : '#9fe8c4';
+    return `<svg viewBox="0 0 200 200" aria-hidden="true">
+      <defs><radialGradient id="${g}" cx="40%" cy="28%">
+        <stop offset="0%" stop-color="${b}"/><stop offset="100%" stop-color="${a}"/></radialGradient></defs>
+      <ellipse cx="100" cy="178" rx="40" ry="8" fill="#000" opacity=".2"/>
+      <g stroke="${b}" fill="none" stroke-width="4" stroke-linecap="round" opacity="${calm?.85:.45}">
+        <path d="M150 84 q16 26 0 52"/><path d="M164 70 q26 40 0 80"/>
+      </g>
+      <ellipse cx="96" cy="116" rx="46" ry="45" fill="url(#${g})"/>
+      <path d="M138 110 l26 10 -26 12 z" fill="#ffc46b"/>
+      <path d="M86 62 q-6 -22 8 -30 q6 18 -8 30z" fill="${calm?'#a9efd0':'#6fd4a6'}"/>
+      ${eyes(82,112,108,10,calm,'#123a2c')}
+      ${calm
+        ? `<path d="M84 134 q14 10 28 0" stroke="#123a2c" stroke-width="4.5" fill="none" stroke-linecap="round"/>`
+        : ''}
+    </svg>`;
+  },
+  boomer(calm){
+    const g = uid('bmg');
+    const a = calm ? '#ff9ec4' : '#f2679f', b = calm ? '#ffd9e8' : '#ffb0cf';
+    return `<svg viewBox="0 0 200 200" aria-hidden="true">
+      <defs><radialGradient id="${g}" cx="38%" cy="28%">
+        <stop offset="0%" stop-color="${b}"/><stop offset="100%" stop-color="${a}"/></radialGradient></defs>
+      <ellipse cx="100" cy="178" rx="46" ry="8" fill="#000" opacity=".2"/>
+      <circle cx="100" cy="112" r="${calm?54:44}" fill="url(#${g})"/>
+      <path d="M62 66 q10 -18 24 -20 M138 66 q-10 -18 -24 -20" stroke="${a}" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <circle cx="82" cy="44" r="6" fill="${a}"/><circle cx="118" cy="44" r="6" fill="${a}"/>
+      ${eyes(82,118,104,11,calm,'#5c1236')}
+      <ellipse cx="100" cy="136" rx="${calm?16:12}" ry="${calm?13:15}" fill="#5c1236"/>
+    </svg>`;
+  },
+  gulp(calm){
+    const g = uid('gpg');
+    const a = calm ? '#9fc8ff' : '#6ea4e8', b = calm ? '#e0eeff' : '#b7d4ff';
+    return `<svg viewBox="0 0 200 200" aria-hidden="true">
+      <defs><radialGradient id="${g}" cx="40%" cy="26%">
+        <stop offset="0%" stop-color="${b}"/><stop offset="100%" stop-color="${a}"/></radialGradient></defs>
+      <ellipse cx="100" cy="178" rx="44" ry="8" fill="#000" opacity=".2"/>
+      <path d="M52 152 q-10 -60 48 -60 q58 0 48 60 z" fill="url(#${g})"/>
+      <rect x="52" y="146" width="96" height="22" rx="11" fill="${a}"/>
+      ${eyes(82,118,110,11,calm,'#12315c')}
+      ${calm
+        ? `<path d="M84 136 q16 12 32 0" stroke="#12315c" stroke-width="5" fill="none" stroke-linecap="round"/>`
+        : `<ellipse cx="100" cy="138" rx="14" ry="11" fill="#12315c"/>`}
+      ${calm?`<circle cx="60" cy="96" r="4" fill="#fff" opacity=".8"/>`:''}
+    </svg>`;
+  },
+  pip(calm){
+    const g = uid('ppg');
+    const a = calm ? '#ffc97a' : '#f2a53d', b = calm ? '#ffe9c2' : '#ffd39a';
+    return `<svg viewBox="0 0 200 200" aria-hidden="true">
+      <defs><radialGradient id="${g}" cx="40%" cy="30%">
+        <stop offset="0%" stop-color="${b}"/><stop offset="100%" stop-color="${a}"/></radialGradient></defs>
+      <ellipse cx="100" cy="176" rx="34" ry="7" fill="#000" opacity=".2"/>
+      <ellipse cx="100" cy="122" rx="38" ry="40" fill="url(#${g})"/>
+      <path d="M74 88 l-14 -26 28 12 z" fill="${a}"/>
+      <path d="M126 88 l14 -26 -28 12 z" fill="${a}"/>
+      ${eyes(86,114,116,9,calm,'#5c3708')}
+      ${calm
+        ? `<path d="M88 140 q12 10 24 0" stroke="#5c3708" stroke-width="4.5" fill="none" stroke-linecap="round"/>`
+        : `<ellipse cx="100" cy="142" rx="8" ry="9" fill="#5c3708"/>`}
+    </svg>`;
+  },
+  speechbubble(){
+    return `<svg viewBox="0 0 200 200" aria-hidden="true">
+      <path d="M30 40 h140 q16 0 16 16 v76 q0 16-16 16 h-72 l-34 30 v-30 h-34 q-16 0-16-16 v-76 q0-16 16-16z" fill="#8ee6a8"/>
+      <circle cx="72" cy="94" r="9" fill="#12321f"/><circle cx="104" cy="94" r="9" fill="#12321f"/><circle cx="136" cy="94" r="9" fill="#12321f"/>
+    </svg>`;
+  },
   sun(){
     return `<svg viewBox="0 0 200 200" aria-hidden="true">
       <circle cx="100" cy="100" r="46" fill="#ffd479"/>
@@ -1299,7 +1445,49 @@ const MECH_LABEL = {
   shake:'Wiggle then freeze', farewell:'Goodbye ritual'
 };
 
-const ORDER = ['ember','zipp','drip','mossle','squeezle','thrummer','wobble','snug','nooma','bounder','loop'];
+/* ---- speech pals. The core of the product: every one of these exists to
+   produce a conversational turn between the child and the grown-up. Turns,
+   not minutes, are what the evidence links to language growth. ---- */
+Object.assign(SPECIES, {
+  chatter: {
+    key:'chatter', label:'Chatter', display:'Chatter', element:'Echo', emotion:'Wants to copy you',
+    mech:'echo', speech:true,
+    lines:["I love saying words! Say one with me?", "I copy everything. Try me!", "My favourite game is say-it-back."],
+    coach:"After Chatter says the word, SAY NOTHING. The ring counts six seconds. Filling that silence is the single most common way adults stop a late talker from talking.",
+    settled:"We said so many words together!",
+    names:['Chatter','Echo','Yappy','Kiki','Bell']
+  },
+  boomer: {
+    key:'boomer', label:'Boomer', display:'Boomer', element:'Sound', emotion:'Loves big voices',
+    mech:'volume', speech:true,
+    lines:["Make me BIG with your voice!", "I grow when you're loud and shrink when you whisper!", "Give me your biggest sound!"],
+    coach:"Go first and be sillier than feels natural. Loud-then-quiet is vocal play, not volume control, and it is one of the easiest ways to get a reluctant child making sound at all.",
+    settled:"My ears are full of your voice.",
+    names:['Boomer','Bongo','Puff','Wobbly','Moo']
+  },
+  gulp: {
+    key:'gulp', label:'Gulp', display:'Gulp', element:'Hungry', emotion:'Needs asking',
+    mech:'tempt', speech:true,
+    lines:["Ooh… I want that. But I can't reach.", "It's stuck behind the gate…", "I really really want it."],
+    coach:"Say nothing at all. Gulp waits on purpose. The whole point is that your child starts the conversation rather than answering one. Any sound at all counts, and it opens the gate.",
+    settled:"You asked and I got it! Thank you!",
+    names:['Gulp','Munch','Nibs','Hungry','Pud']
+  },
+  pip: {
+    key:'pip', label:'Pip', display:'Pip', element:'Choice', emotion:'Can\'t decide',
+    mech:'choose', speech:true,
+    lines:["I can't choose! Which one?", "Help me pick one!", "Which one should I take?"],
+    coach:"Offering a choice out loud gives a child a reason to use a word rather than a point. Whatever they say or pick, say the whole thing back with one word added.",
+    settled:"You chose for me. That was so helpful.",
+    names:['Pip','Pick','Tally','Dot','Ori']
+  }
+});
+SPECIES.thrummer.speech = true;
+SPECIES.nooma.speech = true;
+
+const ORDER = ['chatter','boomer','gulp','pip','thrummer','nooma',
+               'ember','zipp','drip','mossle','squeezle','wobble','snug','bounder','loop'];
+const SPEECH_PALS = ORDER.filter(k=>SPECIES[k].speech);
 
 /* =========================================================
    3b. FEELINGS AND SITUATIONS
@@ -1328,6 +1516,130 @@ const SITUATIONS = {
   waiting: { label:'Waiting',     sub:'Queue, car, restaurant',     art:'hourglass', pal:'mossle', bank:'out' }
 };
 const SITUATION_ORDER = ['bedtime','leaving','waiting'];
+
+/* =========================================================
+   3c. VOICE ENGINE — on-device, additive only
+   -----------------------------------------------------------------
+   Deliberately NOT speech recognition. Word error rates on 4-6 year
+   olds run to ~35% and are worse for delayed speech, so a recogniser
+   used as a gate would reject roughly a third of correct attempts.
+   For a late talker the behaviour we are trying to increase is
+   *attempting to communicate*, so rejecting attempts at random is
+   not a UX flaw, it is a punishment schedule on the target behaviour.
+
+   Instead: loudness and duration, computed from an AnalyserNode on
+   this device. Nothing is recorded, nothing is stored, nothing leaves
+   the phone, and it works offline and on iOS. Every vocalisation
+   counts. The child cannot fail.
+   ========================================================= */
+const Voice = {
+  supported: !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia),
+  granted: false, denied: false,
+  stream: null, actx: null, analyser: null, buf: null, src: null,
+  raf: null, noiseFloor: 0.012, running: false,
+
+  async enable(){
+    if(this.granted) return true;
+    if(!this.supported){ this.denied = true; return false; }
+    try{
+      this.stream = await navigator.mediaDevices.getUserMedia({
+        audio: { echoCancellation:true, noiseSuppression:true, autoGainControl:true },
+        video: false
+      });
+      const C = window.AudioContext || window.webkitAudioContext;
+      this.actx = new C();
+      if(this.actx.state === 'suspended') await this.actx.resume();
+      this.src = this.actx.createMediaStreamSource(this.stream);
+      this.analyser = this.actx.createAnalyser();
+      this.analyser.fftSize = 1024;
+      this.analyser.smoothingTimeConstant = 0.3;
+      this.buf = new Float32Array(this.analyser.fftSize);
+      this.src.connect(this.analyser);          // analyser only — never to destination
+      this.granted = true; this.denied = false;
+      return true;
+    }catch(e){ this.denied = true; this.granted = false; return false; }
+  },
+
+  level(){
+    if(!this.analyser) return 0;
+    try{
+      this.analyser.getFloatTimeDomainData(this.buf);
+      let sum = 0;
+      for(let i=0;i<this.buf.length;i++) sum += this.buf[i]*this.buf[i];
+      return Math.sqrt(sum / this.buf.length);          // RMS
+    }catch(e){ return 0; }
+  },
+
+  /* Sample the room so a noisy kitchen doesn't read as constant talking. */
+  calibrate(ms){
+    return new Promise(res=>{
+      if(!this.granted) return res(this.noiseFloor);
+      const t0 = performance.now(); let peak = 0, n = 0, sum = 0;
+      const tick = ()=>{
+        const l = this.level(); peak = Math.max(peak, l); sum += l; n++;
+        if(performance.now() - t0 < (ms||900)) requestAnimationFrame(tick);
+        else {
+          const mean = n ? sum/n : 0;
+          this.noiseFloor = Math.min(0.09, Math.max(0.010, mean * 2.2 + peak * 0.25));
+          res(this.noiseFloor);
+        }
+      };
+      requestAnimationFrame(tick);
+    });
+  },
+
+  /* Emits live level, and a complete utterance when one ends.
+     onFrame(level01, speaking) · onUtterance({ms, peak, mean}) */
+  listen(onFrame, onUtterance){
+    if(!this.granted || this.running) return;
+    this.running = true;
+    const THRESH = () => Math.max(this.noiseFloor * 1.6, 0.014);
+    const ON_MS = 110, OFF_MS = 420, MIN_MS = 180;
+    let speaking = false, onset = 0, lastLoud = 0, peak = 0, sum = 0, frames = 0, candidate = 0;
+
+    const tick = (now)=>{
+      if(!this.running) return;
+      const l = this.level();
+      const loud = l > THRESH();
+
+      if(!speaking){
+        if(loud){
+          if(!candidate) candidate = now;
+          else if(now - candidate >= ON_MS){ speaking = true; onset = candidate; peak = 0; sum = 0; frames = 0; }
+        } else candidate = 0;
+      } else {
+        if(loud) lastLoud = now;
+        peak = Math.max(peak, l); sum += l; frames++;
+        if(now - lastLoud > OFF_MS){
+          const ms = lastLoud - onset;
+          speaking = false; candidate = 0;
+          if(ms >= MIN_MS && onUtterance) onUtterance({ ms, peak, mean: frames ? sum/frames : 0 });
+        }
+      }
+      /* normalise for display: floor..~0.28 maps to 0..1 */
+      const norm = Math.max(0, Math.min(1, (l - THRESH()) / 0.24));
+      if(onFrame) onFrame(norm, speaking);
+      this.raf = requestAnimationFrame(tick);
+    };
+    this.raf = requestAnimationFrame(tick);
+  },
+
+  stop(){
+    this.running = false;
+    if(this.raf) cancelAnimationFrame(this.raf);
+    this.raf = null;
+  },
+
+  /* Release the mic entirely. Called when leaving a speech activity so no
+     indicator stays lit on the phone longer than the activity needs it. */
+  release(){
+    this.stop();
+    try{ if(this.stream) this.stream.getTracks().forEach(t=>t.stop()); }catch(e){}
+    try{ if(this.actx) this.actx.close(); }catch(e){}
+    this.stream = null; this.actx = null; this.analyser = null; this.src = null;
+    this.granted = false;
+  }
+};
 
 /* =========================================================
    4. SMALL UTILS — audio, voice, haptics, toast, nav
@@ -1388,7 +1700,7 @@ function go(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));
   const el = document.getElementById('s-'+id);
   if(el){ el.classList.add('on'); el.scrollTop = 0; }
-  if(id==='play') keepAwake(); else letSleep();
+  if(id==='play') keepAwake(); else { letSleep(); Voice.release(); }
   if(id==='island') renderIsland();
   if(id==='parent') renderParent();
   if(id==='journey') renderJourney();
@@ -1419,7 +1731,29 @@ function palForFeeling(feeling){
   return list[idx];
 }
 
+const SPEECH_BLURB = {
+  chatter:'Say a word back to me',
+  boomer :'Big voice, little voice',
+  gulp   :'Ask me and I\'ll get it',
+  pip    :'Tell me which one',
+  thrummer:'Hold a long sound',
+  nooma  :'Say what you feel'
+};
+
 function renderIsland(){
+  const sg = document.getElementById('speech-grid');
+  if(sg){
+    sg.innerHTML = SPEECH_PALS.map(k=>`
+      <button class="wx" data-speech="${k}">
+        ${ART[k](false)}
+        <div class="label">${escapeHtml(S.pals[k] ? S.pals[k].name : SPECIES[k].display)}</div>
+        <div class="sub">${escapeHtml(SPEECH_BLURB[k] || '')}</div>
+      </button>`).join('');
+    sg.querySelectorAll('[data-speech]').forEach(b=>{
+      b.onclick = ()=>{ actx(); startSpeech(b.dataset.speech); };
+    });
+  }
+
   const grid = document.getElementById('wx-grid');
   grid.innerHTML = FEELING_ORDER.map(k=>{
     const f = FEELINGS[k];
@@ -1500,6 +1834,12 @@ function startSession(wx){
   showSummon();
 }
 
+function startSpeech(species){
+  SESSION = { species, kind:'speech', mood:'speech', feeling:null,
+              t0: Date.now(), totalSteps: 0, turns: 0, opts: {} };
+  showSummon();
+}
+
 function startSituation(key){
   const s = SITUATIONS[key];
   SESSION = { species: s.pal, kind: 'situation', mood: key, feeling: null,
@@ -1539,14 +1879,24 @@ function showSummon(){
 }
 
 const MECHANICS = {
+  /* speech — the core of the product */
+  echo: playEcho, volume: playVolume, tempt: playTempt, choose: playChoose,
+  hum: playHum, name: playName,
+  /* regulation — the on-ramp, because a dysregulated child will not talk */
   breath: playBreath, trace: playTrace, beat: playBeat, find5: playFind5,
-  squeeze: playSqueeze, hum: playHum, bilateral: playBilateral,
-  bodyscan: playBodyScan, name: playName, shake: playShake, farewell: playFarewell
+  squeeze: playSqueeze, bilateral: playBilateral,
+  bodyscan: playBodyScan, shake: playShake, farewell: playFarewell
 };
 function beginSession(){
   actx();
   const sp = SPECIES[SESSION.species];
+  SESSION.turns = SESSION.turns || 0;
   go('play');
+  const pill = document.getElementById('turn-pill');
+  if(pill){
+    pill.style.display = sp.speech ? 'inline-block' : 'none';
+    pill.textContent = '0 turns';
+  }
   MECHANICS[sp.mech]();
 }
 document.getElementById('btn-begin').onclick = ()=>{ SESSION.opts.together = false; beginSession(); };
@@ -1585,7 +1935,8 @@ function endPlay(outcome){
   const secs = Math.round((Date.now() - SESSION.t0)/1000);
   S.log.unshift({ t:Date.now(), mood:SESSION.mood, species:SESSION.species, secs, outcome,
                   kind:SESSION.kind, mech:SPECIES[SESSION.species].mech,
-                  together: !!SESSION.opts.together, word: SESSION.word || null });
+                  together: !!SESSION.opts.together, word: SESSION.word || null,
+                  speech: !!SPECIES[SESSION.species].speech, turns: SESSION.turns || 0 });
   S.log = S.log.slice(0,200);
 
   if(outcome === 'settled'){
@@ -1994,12 +2345,77 @@ function playSqueeze(){
    child holds the creature while they hum and lets go when they run out,
    so the app learns their real capacity instead of imposing a number.
    ========================================================= */
-function playHum(){
+/* Voice-driven: the child's own sustained sound is the input. Phonation
+   duration is a real thing to build for a child who barely vocalises, and
+   holding a note is the least demanding vocal task there is. Falls back to
+   press-and-hold when the mic is unavailable. */
+async function playHum(){
+  const mic = await ensureVoice();
+  if(mic === 'ok') return playHumVoice();
+  return playHumTouch();
+}
+
+async function playHumVoice(){
+  const HUMS = 5;
+  setSteps(HUMS);
+  setCoach('Hum out loud with them, low and boring. Thrummer grows for as long as the sound lasts.');
+  sessionSignal();
+  let best = 0;
+
+  for(let i = 0; i < HUMS; i++){
+    waitStage(`
+      <div class="hum-wrap" id="hum-wrap">
+        <div class="hum-ring" id="hum-r1"></div>
+        <div class="hum-ring" id="hum-r2"></div>
+        <div class="creature" id="hum-art" style="width:52%;height:52%;position:relative;z-index:2"></div>
+      </div>
+      <div class="orbhint" id="hum-hint">huuuuuum…</div>
+      <div class="vumeter"><i id="hum-vu"></i></div>`);
+    const art = document.getElementById('hum-art');
+    art.innerHTML = ART.thrummer(i >= 3);
+    const wrap = document.getElementById('hum-wrap');
+    say(i === 0 ? 'Hum with me' : 'Again');
+    await sleep(600);
+
+    const utt = await new Promise(resolve=>{
+      const t0 = performance.now(); let done = false, raf = null;
+      const fin = u=>{ if(done) return; done = true; Voice.stop(); if(raf) cancelAnimationFrame(raf); resolve(u); };
+      const draw = now=>{ if(now - t0 > 12000) return fin(null); raf = requestAnimationFrame(draw); };
+      raf = requestAnimationFrame(draw);
+      Voice.listen(
+        (lvl, speaking)=>{
+          wrap.classList.toggle('humming', speaking);
+          art.style.transform = 'scale(' + (1 + lvl * 0.35).toFixed(3) + ')';
+          const vu = document.getElementById('hum-vu');
+          if(vu) vu.style.transform = 'scaleX(' + (0.06 + lvl * 0.94) + ')';
+        },
+        u=>fin(u)
+      );
+      document.getElementById('play-stage').addEventListener('pointerdown', ()=>fin({ms:0}), { once:true });
+    });
+
+    art.style.transform = ''; wrap.classList.remove('humming');
+    const secs = utt ? utt.ms / 1000 : 0;
+    if(secs > 0){
+      countTurn(); best = Math.max(best, secs);
+      const h = document.getElementById('hum-hint');
+      if(h) h.textContent = secs >= 3 ? secs.toFixed(1) + ' seconds. That was a long one!' : secs.toFixed(1) + ' seconds';
+      buzz(16); tone(196 + i * 30, 0.4, 'sine', 0.05);
+    }
+    markStep(i); setProg((i+1)/HUMS);
+    await sleep(900);
+  }
+  setCoach(best ? 'Longest sound: ' + best.toFixed(1) + ' seconds.' : 'No sound this time, and that is fine.');
+  await sleep(900);
+  endPlay('settled');
+}
+
+function playHumTouch(){
   const HUMS = 5;
   setSteps(HUMS);
   setCoach(SESSION.opts.together
     ? 'Both of you put a thumb on Thrummer and hum together. Low and boring is perfect.'
-    : 'Hum out loud with them. Low and boring. Let them decide when to stop.');
+    : 'Microphone off, so hold Thrummer while you hum instead. Let go when you run out.');
 
   document.getElementById('play-stage').innerHTML = `
     <div class="hum-wrap" id="hum-wrap">
@@ -2196,12 +2612,26 @@ function playName(){
       const word = b.dataset.f;
       SESSION.word = branch.broad + ' / ' + word;
       buzz(18); markStep(1); setProg(1);
+      /* A feeling word is only useful once the child can say it, so the
+         last beat asks for it out loud rather than ending on a tap. */
       stage.innerHTML = `
-        <div class="creature float" style="width:min(40vw,180px);height:min(40vw,180px)">${ART.nooma(true)}</div>
-        <div class="speech">You feel <b>${escapeHtml(word.toLowerCase())}</b>. Now it has a name.</div>`;
-      say('You feel ' + word + '. Now it has a name.');
-      setCoach('Say it back to them out loud: “You feel ' + word.toLowerCase() + '.”');
-      later(()=>endPlay('settled'), 2600);
+        <div class="creature float" style="width:min(30vw,132px);height:min(30vw,132px)">${ART.nooma(true)}</div>
+        <div class="speech">You feel <b>${escapeHtml(word.toLowerCase())}</b>.</div>
+        <div class="quest-big" style="text-align:center">Say it with me: “${escapeHtml(word.toLowerCase())}”</div>
+        <div class="ringwrap">${ringSVG('nm-ring')}<div class="ringmid" id="nm-mid">your turn</div></div>
+        <div class="vumeter"><i id="nm-vu"></i></div>`;
+      say('You feel ' + word + '. Say it with me. ' + word);
+      setCoach('Say the word, then wait. Do not ask them to repeat it more than once.');
+      ensureVoice().then(()=>listenForTurn('nm-ring', document.getElementById('nm-vu'), WAIT_MS))
+        .then(r=>{
+          const mid = document.getElementById('nm-mid');
+          if(r.spoke){
+            countTurn();
+            if(mid) mid.textContent = 'you said it!';
+            tone(523,0.3,'sine',0.06); later(()=>tone(784,0.4,'sine',0.06),150);
+          } else if(mid) mid.textContent = word.toLowerCase();
+          later(()=>endPlay('settled'), 1500);
+        });
     });
   }
   stepOne();
@@ -2573,6 +3003,351 @@ document.getElementById('btn-show-child').onclick = ()=>{
 };
 
 /* =========================================================
+   10j. SPEECH ACTIVITIES
+   -----------------------------------------------------------------
+   Shared rules across all of them:
+   · a conversational TURN is the unit of value, not a completed level
+   · wait time is enforced by the app, because adults typically wait
+     1-2 seconds and a late talker often needs 5-10
+   · any vocalisation counts. There is no wrong answer and no rejection
+   · if the mic is unavailable or refused, the grown-up taps instead and
+     the activity is otherwise identical
+   ========================================================= */
+const WAIT_MS = 6000;
+
+/* Early-developing, functional words. The second field is the recast the
+   creature says back: the child's word plus one, which is the core move in
+   focused stimulation and expansion. */
+const SPEECH_WORDS = [
+  { w:'ball',  x:'big ball' },   { w:'more',  x:'more please' },
+  { w:'up',    x:'up we go' },   { w:'dog',   x:'big dog' },
+  { w:'car',   x:'fast car' },   { w:'cup',   x:'my cup' },
+  { w:'shoe',  x:'red shoe' },   { w:'baby',  x:'little baby' },
+  { w:'milk',  x:'more milk' },  { w:'open',  x:'open it' },
+  { w:'go',    x:'go go go' },   { w:'hot',   x:'very hot' },
+  { w:'eat',   x:'eat it up' },  { w:'bye',   x:'bye bye' },
+  { w:'mine',  x:'that is mine' },{ w:'again', x:'do it again' }
+];
+/* Sound play for children not yet using words at all. */
+const SPEECH_SOUNDS = [
+  { w:'moo', x:'moo moo' }, { w:'baa', x:'baa baa' }, { w:'woof', x:'woof woof' },
+  { w:'beep', x:'beep beep' }, { w:'vroom', x:'vroom vroom' }, { w:'pop', x:'pop pop' },
+  { w:'uh oh', x:'uh oh, it fell' }, { w:'wheee', x:'wheee, so fast' }, { w:'splash', x:'big splash' }
+];
+const TEMPT_ITEMS = [
+  { n:'apple',  a:'🍎' }, { n:'ball', a:'⚽' }, { n:'cake', a:'🧁' },
+  { n:'star',   a:'⭐' }, { n:'banana', a:'🍌' }, { n:'car', a:'🚗' }
+];
+const CHOICE_PAIRS = [
+  [{ n:'red car', a:'🚗' },   { n:'blue boat', a:'⛵' }],
+  [{ n:'apple',   a:'🍎' },   { n:'banana',    a:'🍌' }],
+  [{ n:'dog',     a:'🐶' },   { n:'cat',       a:'🐱' }],
+  [{ n:'star',    a:'⭐' },   { n:'moon',      a:'🌙' }],
+  [{ n:'hat',     a:'🧢' },   { n:'shoe',      a:'👟' }]
+];
+
+/* ---------- mic bootstrap ---------- */
+async function ensureVoice(){
+  if(Voice.granted) return 'ok';
+  if(!Voice.supported) return 'unsupported';
+  const ok = await Voice.enable();
+  if(!ok) return 'denied';
+  await Voice.calibrate(900);
+  return 'ok';
+}
+
+/* ---------- the wait ring: the app holds the silence ---------- */
+function waitStage(html){ document.getElementById('play-stage').innerHTML = html; }
+
+function ringSVG(id){
+  return `<svg class="waitring" viewBox="0 0 120 120" aria-hidden="true">
+    <circle cx="60" cy="60" r="54" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="7"/>
+    <circle id="${id}" cx="60" cy="60" r="54" fill="none" stroke="#8ee6a8" stroke-width="7"
+      stroke-linecap="round" stroke-dasharray="339.3" stroke-dashoffset="0"
+      transform="rotate(-90 60 60)"/>
+  </svg>`;
+}
+
+/* Resolves as soon as the child makes a sound, or when the wait elapses.
+   Never resolves "wrong" — only "spoke" or "didn't, yet". */
+function listenForTurn(ringId, levelEl, ms){
+  return new Promise(resolve=>{
+    const ring = document.getElementById(ringId);
+    const total = 339.3;
+    const t0 = performance.now();
+    let done = false;
+    const finish = (spoke, utt)=>{
+      if(done) return; done = true;
+      Voice.stop(); clearAll_ringTimer();
+      resolve({ spoke, utt });
+    };
+    let timer = null;
+    function clearAll_ringTimer(){ if(timer) cancelAnimationFrame(timer); }
+
+    const draw = (now)=>{
+      const p = Math.min(1, (now - t0) / ms);
+      if(ring) ring.setAttribute('stroke-dashoffset', String(total * p));
+      if(p >= 1) return finish(false, null);
+      timer = requestAnimationFrame(draw);
+    };
+    timer = requestAnimationFrame(draw);
+
+    if(Voice.granted){
+      Voice.listen(
+        (lvl)=>{ if(levelEl) levelEl.style.transform = 'scaleX(' + (0.06 + lvl * 0.94) + ')'; },
+        (utt)=>{ buzz(18); finish(true, utt); }
+      );
+    }
+    /* grown-up fallback: a tap anywhere on the stage counts the turn */
+    const stage = document.getElementById('play-stage');
+    const tap = ()=>{ finish(true, null); };
+    stage.addEventListener('pointerdown', tap, { once:true, signal: ABORT ? ABORT.signal : undefined });
+  });
+}
+
+function countTurn(){
+  SESSION.turns = (SESSION.turns || 0) + 1;
+  S.turns = (S.turns || 0) + 1;
+  const el = document.getElementById('turn-pill');
+  if(el){ el.textContent = SESSION.turns + (SESSION.turns === 1 ? ' turn' : ' turns'); el.classList.add('pop');
+          later(()=>el.classList.remove('pop'), 320); }
+}
+
+function micBanner(state){
+  if(state === 'ok') return '';
+  return `<div class="micoff">${state === 'denied'
+    ? 'Microphone off. Tap the screen when your child makes a sound.'
+    : 'This browser has no microphone access. Tap the screen when your child makes a sound.'}</div>`;
+}
+
+/* =========================================================
+   MECHANIC — CHATTER · say it back, then hear it grown by one word
+   Focused stimulation + expansion, the two moves with the best support
+   in parent-implemented language intervention.
+   ========================================================= */
+async function playEcho(){
+  const mic = await ensureVoice();
+  const useSounds = S.settings.soundsNotWords;
+  const bank = useSounds ? SPEECH_SOUNDS : SPEECH_WORDS;
+  const items = sample(bank, 5);
+  setSteps(items.length);
+  setCoach('After Chatter says it, say nothing. The ring is six seconds. Let it run.');
+  sessionSignal();
+
+  for(let i = 0; i < items.length; i++){
+    const it = items[i];
+    waitStage(`
+      ${micBanner(mic)}
+      <div class="creature jitter" id="ec-art" style="width:min(30vw,132px);height:min(30vw,132px)"></div>
+      <div class="quest-big" id="ec-word">${escapeHtml(it.w)}</div>
+      <div class="ringwrap">${ringSVG('ec-ring')}<div class="ringmid" id="ec-mid">your turn</div></div>
+      <div class="vumeter"><i id="ec-vu"></i></div>`);
+    document.getElementById('ec-art').innerHTML = ART.chatter(false);
+
+    say(it.w); await sleep(750); say(it.w);
+    await sleep(650);
+    document.getElementById('ec-mid').textContent = 'your turn';
+
+    const r = await listenForTurn('ec-ring', document.getElementById('ec-vu'), WAIT_MS);
+
+    const art = document.getElementById('ec-art');
+    if(r.spoke){
+      countTurn();
+      if(art){ art.innerHTML = ART.chatter(true); art.className = 'creature float'; }
+      const mid = document.getElementById('ec-mid');
+      if(mid) mid.textContent = 'I heard you!';
+      tone(523,0.3,'sine',0.06); later(()=>tone(784,0.4,'sine',0.06),150);
+      say(it.x);                                  // the recast: their word, plus one
+      const w = document.getElementById('ec-word');
+      if(w) w.textContent = it.x;
+      setCoach('Say it back the way Chatter did, with one word added. That is the whole technique.');
+      await sleep(1900);
+    }else{
+      const mid = document.getElementById('ec-mid');
+      if(mid) mid.textContent = 'I\'ll go again';
+      say(it.w);                                   // model again, never a failure
+      setCoach('No sound is fine. Chatter just models it again. Keep your own face relaxed.');
+      await sleep(1500);
+    }
+    markStep(i); setProg((i+1)/items.length);
+  }
+  endPlay('settled');
+}
+
+/* =========================================================
+   MECHANIC — BOOMER · loud voice, little voice
+   Vocal play. The easiest way to get sound out of a reluctant child.
+   ========================================================= */
+async function playVolume(){
+  const mic = await ensureVoice();
+  const rounds = [
+    { big:true,  t:'Make Boomer BIG!' },
+    { big:false, t:'Now a tiny whisper…' },
+    { big:true,  t:'Even BIGGER!' },
+    { big:false, t:'Teeny tiny…' }
+  ];
+  setSteps(rounds.length);
+  setCoach('Go first, and be louder and sillier than feels natural. They copy you, not the screen.');
+  sessionSignal();
+
+  for(let i = 0; i < rounds.length; i++){
+    const r = rounds[i];
+    waitStage(`
+      ${micBanner(mic)}
+      <div class="creature" id="bm-art" style="width:min(50vw,220px);height:min(50vw,220px)"></div>
+      <div class="quest-big">${r.t}</div>
+      <div class="ringwrap">${ringSVG('bm-ring')}<div class="ringmid" id="bm-mid">go on…</div></div>
+      <div class="vumeter"><i id="bm-vu"></i></div>`);
+    const art = document.getElementById('bm-art');
+    art.innerHTML = ART.boomer(false);
+    say(r.t);
+
+    let peak = 0;
+    const live = (lvl)=>{
+      peak = Math.max(peak, lvl);
+      const s = r.big ? (0.55 + lvl * 0.75) : (1.15 - Math.min(0.55, lvl * 0.9));
+      art.style.transform = 'scale(' + s.toFixed(3) + ')';
+      const vu = document.getElementById('bm-vu');
+      if(vu) vu.style.transform = 'scaleX(' + (0.06 + lvl * 0.94) + ')';
+    };
+    const got = await new Promise(resolve=>{
+      const ring = document.getElementById('bm-ring'); const t0 = performance.now(); let done=false, raf=null;
+      const fin = ok=>{ if(done) return; done=true; Voice.stop(); if(raf) cancelAnimationFrame(raf); resolve(ok); };
+      const draw = now=>{ const p=Math.min(1,(now-t0)/WAIT_MS);
+        if(ring) ring.setAttribute('stroke-dashoffset', String(339.3*p));
+        if(p>=1) return fin(false); raf=requestAnimationFrame(draw); };
+      raf = requestAnimationFrame(draw);
+      if(Voice.granted) Voice.listen(live, ()=>fin(true));
+      document.getElementById('play-stage').addEventListener('pointerdown', ()=>fin(true), { once:true });
+    });
+
+    art.style.transform = '';
+    if(got){
+      countTurn();
+      art.innerHTML = ART.boomer(true);
+      buzz(20); tone(r.big ? 660 : 330, 0.4, 'sine', 0.06);
+      const mid = document.getElementById('bm-mid'); if(mid) mid.textContent = r.big ? 'HUGE!' : 'so quiet…';
+      await sleep(1100);
+    } else {
+      const mid = document.getElementById('bm-mid'); if(mid) mid.textContent = 'your turn next time';
+      await sleep(700);
+    }
+    markStep(i); setProg((i+1)/rounds.length);
+  }
+  endPlay('settled');
+}
+
+/* =========================================================
+   MECHANIC — GULP · the communication temptation
+   Milieu teaching. The creature wants something and waits. No instruction
+   is given on purpose: the value is in the child INITIATING.
+   ========================================================= */
+async function playTempt(){
+  const mic = await ensureVoice();
+  const items = sample(TEMPT_ITEMS, 4);
+  setSteps(items.length);
+  setCoach('Say nothing. Gulp waits on purpose, and so should you. Any sound at all opens the gate.');
+  sessionSignal();
+
+  for(let i = 0; i < items.length; i++){
+    const it = items[i];
+    waitStage(`
+      ${micBanner(mic)}
+      <div class="temptrow">
+        <div class="creature jitter" id="gp-art" style="width:min(26vw,116px);height:min(26vw,116px)"></div>
+        <div class="gate" id="gp-gate"><div class="gatebars"></div><div class="prize">${it.a}</div></div>
+      </div>
+      <div class="quest-big" id="gp-t">Gulp wants the ${escapeHtml(it.n)}…</div>
+      <div class="ringwrap">${ringSVG('gp-ring')}<div class="ringmid" id="gp-mid">…</div></div>
+      <div class="vumeter"><i id="gp-vu"></i></div>`);
+    document.getElementById('gp-art').innerHTML = ART.gulp(false);
+    say(pick(['Ooh. I want that.', 'Mmm, the ' + it.n + '.', 'I really want it.']));
+
+    let r = await listenForTurn('gp-ring', document.getElementById('gp-vu'), WAIT_MS);
+    if(!r.spoke){
+      /* model once, then wait again — still never a failure */
+      const mid = document.getElementById('gp-mid'); if(mid) mid.textContent = '“open?”';
+      say('open?');
+      setCoach('Gulp modelled the word. Wait again. Resist finishing the sentence for them.');
+      const ring = document.getElementById('gp-ring'); if(ring) ring.setAttribute('stroke-dashoffset','0');
+      r = await listenForTurn('gp-ring', document.getElementById('gp-vu'), WAIT_MS);
+    }
+
+    if(r.spoke){
+      countTurn();
+      const gate = document.getElementById('gp-gate'); if(gate) gate.classList.add('open');
+      const art = document.getElementById('gp-art');
+      if(art){ art.innerHTML = ART.gulp(true); art.className = 'creature float'; }
+      document.getElementById('gp-t').textContent = 'You asked! ' + it.n + '!';
+      say('You asked! ' + it.n + '! Thank you!');
+      tone(523,0.3,'sine',0.06); later(()=>tone(659,0.3,'sine',0.06),140); later(()=>tone(880,0.5,'sine',0.06),280);
+      buzz(26);
+      setCoach('Say the word back with one more added: “open it”, “more apple”.');
+      await sleep(2100);
+    } else {
+      document.getElementById('gp-t').textContent = 'Maybe next time.';
+      await sleep(900);
+    }
+    markStep(i); setProg((i+1)/items.length);
+  }
+  endPlay('settled');
+}
+
+/* =========================================================
+   MECHANIC — PIP · choose one out loud
+   A choice gives a child a reason to use a word rather than a point.
+   ========================================================= */
+async function playChoose(){
+  const mic = await ensureVoice();
+  const pairs = sample(CHOICE_PAIRS, 4);
+  setSteps(pairs.length);
+  setCoach('Offer the choice out loud yourself too. Whatever they say or point at, say the whole thing back with one word added.');
+  sessionSignal();
+
+  for(let i = 0; i < pairs.length; i++){
+    const [a, b] = pairs[i];
+    waitStage(`
+      ${micBanner(mic)}
+      <div class="creature jitter" id="pp-art" style="width:min(24vw,108px);height:min(24vw,108px)"></div>
+      <div class="quest-big">Which one?</div>
+      <div class="choicerow">
+        <button class="choicecard" data-c="0"><span class="ca">${a.a}</span><span class="cn">${escapeHtml(a.n)}</span></button>
+        <button class="choicecard" data-c="1"><span class="ca">${b.a}</span><span class="cn">${escapeHtml(b.n)}</span></button>
+      </div>
+      <div class="ringwrap">${ringSVG('pp-ring')}<div class="ringmid" id="pp-mid">tell me</div></div>
+      <div class="vumeter"><i id="pp-vu"></i></div>`);
+    document.getElementById('pp-art').innerHTML = ART.pip(false);
+    say(a.n + ', or ' + b.n + '?');
+    await sleep(400);
+
+    let chosen = null;
+    document.querySelectorAll('[data-c]').forEach(btn=>{
+      btn.addEventListener('pointerdown', ()=>{ chosen = +btn.dataset.c; }, { once:true });
+    });
+    const r = await listenForTurn('pp-ring', document.getElementById('pp-vu'), WAIT_MS);
+    const item = (chosen === 1) ? b : a;
+
+    if(r.spoke || chosen !== null){
+      countTurn();
+      const art = document.getElementById('pp-art');
+      if(art){ art.innerHTML = ART.pip(true); art.className = 'creature float'; }
+      document.getElementById('pp-mid').textContent = item.n;
+      say('The ' + item.n + '! You picked the ' + item.n + '.');
+      tone(587,0.35,'sine',0.06); later(()=>tone(784,0.45,'sine',0.06),160);
+      buzz(20);
+      await sleep(1800);
+    } else {
+      say(a.n + ', or ' + b.n + '?');
+      await sleep(900);
+    }
+    markStep(i); setProg((i+1)/pairs.length);
+  }
+  endPlay('settled');
+}
+
+function sleep(ms){ return new Promise(r=>later(r, ms)); }
+
+/* =========================================================
    11. PARENT GATE
    ========================================================= */
 let gateAnswer = 0, gateBuf = '';
@@ -2624,8 +3399,31 @@ function renderParent(){
     ? SPECIES[last.species].coach
     : 'Pick a weather together and try one round. Narrate your own feelings out loud while you do it. That is the part that transfers.';
 
+  /* ---------- talking ---------- */
+  const spSessions = S.log.filter(l=>l.speech && l.outcome==='settled');
+  const spTurns = spSessions.reduce((a,l)=>a + (l.turns||0), 0);
+  const avg = spSessions.length ? (spTurns / spSessions.length) : 0;
+  const setTxt = (id,v)=>{ const e=document.getElementById(id); if(e) e.textContent = v; };
+  setTxt('sp-turns', S.turns || 0);
+  setTxt('sp-sess', spSessions.length);
+  setTxt('sp-avg', spSessions.length ? avg.toFixed(1) : '—');
+  /* The definition stays visible always. A parent reading "4.3 turns" needs to
+     know what a turn is and why it is the number being shown, not just on
+     day one. */
+  const TURN_DEF = 'A conversational turn is one back-and-forth: your child makes a sound or says a word, and you answer. Turns are what the research links to language growth, far more than how many words a child hears. That is why this counts turns and not minutes. ';
+  setTxt('sp-note', TURN_DEF + (!spSessions.length
+    ? 'Nothing recorded yet.'
+    : avg >= 8
+      ? 'You are averaging about ' + avg.toFixed(0) + ' a session, which is strong. What matters now is doing it often rather than for longer, and using the same moves away from the screen.'
+      : avg >= 4
+        ? 'You are averaging about ' + avg.toFixed(0) + ' a session. The usual way to get more is to wait longer after you speak. Let the ring finish.'
+        : 'Few so far. The most common cause is filling the silence. Try Chatter or Gulp and say nothing at all until the ring runs out, even when it feels rude.'));
+
+  renderChecklist();
+
   const moodLabel = l =>
     l.kind === 'calm'      ? 'Sunny' :
+    l.kind === 'speech'    ? 'Talking' :
     l.kind === 'situation' ? (SITUATIONS[l.mood] ? SITUATIONS[l.mood].label : l.mood) :
     (FEELINGS[l.mood] ? FEELINGS[l.mood].label : (SPECIES[l.mood] ? SPECIES[l.mood].label : l.mood));
 
@@ -2685,6 +3483,68 @@ function renderParent(){
 
   renderHealth();
   renderInstallCard();
+}
+
+/* ---------- milestone checklist ----------
+   Deliberately framed as "what can your child do", answered by the parent,
+   never by the app. Wording avoids anything that reads as a score or a
+   diagnosis. The only action it ever recommends is seeing a professional,
+   because the main harm in speech delay is waiting. */
+const CHECK_ITEMS = [
+  { k:'sentences',  t:'Puts four or more words together in a sentence' },
+  { k:'strangers',  t:'Someone outside the family can understand almost everything they say', key:true },
+  { k:'questions',  t:'Asks questions like “what’s that?”, “where is it?”, “why?”' },
+  { k:'recount',    t:'Tells you about something that happened earlier in the day' },
+  { k:'twostep',    t:'Follows a two-part instruction without you pointing or gesturing' },
+  { k:'endings',    t:'Uses word endings — “running”, “cats”, “jumped”' },
+  { k:'backforth',  t:'Keeps a back-and-forth conversation going for several turns' },
+  { k:'wholewords', t:'Says whole words rather than dropping the start or end of them' },
+  { k:'initiates',  t:'Starts conversations rather than only answering' },
+  { k:'frustrated', t:'Rarely gets frustrated at not being understood', invert:false }
+];
+
+function renderChecklist(){
+  const list = document.getElementById('check-list');
+  if(!list) return;
+  list.innerHTML = CHECK_ITEMS.map(it=>{
+    const yes = S.checklist[it.k] === true;
+    return `<div class="ms-check${yes?' yes':''}" data-ck="${it.k}" role="checkbox" aria-checked="${yes}">
+      <div class="ms-box">${yes?'✓':''}</div><div class="mt">${it.t}</div></div>`;
+  }).join('');
+  list.querySelectorAll('[data-ck]').forEach(row=>{
+    row.onclick = ()=>{
+      const k = row.dataset.ck;
+      S.checklist[k] = !S.checklist[k];
+      S.checklistAt = Date.now();
+      save(); buzz(10); renderChecklist();
+    };
+  });
+
+  const answered = Object.keys(S.checklist).length;
+  const noCount = CHECK_ITEMS.filter(it=>S.checklist[it.k] !== true).length;
+  const strangersNo = S.checklist.strangers !== true;
+  const v = document.getElementById('check-verdict');
+  if(!v) return;
+
+  if(!answered){
+    v.innerHTML = `<p class="note" style="margin-top:14px">Tick the ones that are already true. Leave the rest.</p>`;
+    return;
+  }
+  let cls, msg;
+  if(strangersNo || noCount >= 4){
+    cls = 'refer';
+    msg = '<b>Worth getting assessed.</b> ' +
+      (strangersNo ? 'By around four, most children are understood by people outside the family almost all of the time. ' : '') +
+      'Ask your doctor for a referral to a speech and language therapist, or contact one directly — in most places you do not need a referral. Assessment is free through public services in many countries. Waiting lists are long, so joining one early costs you nothing and buys you time.';
+  } else if(noCount >= 2){
+    cls = 'watch';
+    msg = '<b>Worth a conversation.</b> A few of these are not there yet. That is not necessarily a problem, but mention it at your next health check rather than waiting to see. If you are worried, that alone is a good enough reason to get an assessment.';
+  } else {
+    cls = 'ok';
+    msg = '<b>Nothing here stands out.</b> Keep going with the talking games. If you are still worried despite this, trust that — parental concern is one of the better early signals, and no checklist overrides it.';
+  }
+  v.innerHTML = `<div class="flag ${cls}">${msg}</div>
+    <p class="note" style="margin-top:12px">This app is a practice tool. It does not assess, diagnose or treat anything, and it is not a substitute for a speech and language therapist.</p>`;
 }
 
 /* ---------- storage / app health ---------- */
@@ -2930,6 +3790,7 @@ function handleLaunchParam(){
     history.replaceState(null, '', location.pathname);
     if(p === 'parent') go('gate');
     if(p === 'sunny' && S.onboarded){ actx(); startSession('sunny'); }
+    if(p === 'talk' && S.onboarded){ actx(); startSpeech('chatter'); }
   }catch(e){}
 }
 

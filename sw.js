@@ -8,7 +8,7 @@
  * and the page is told a new version is waiting so it can offer a reload.
  */
 
-const CACHE_VERSION = 'fc-v0.7.1';
+const CACHE_VERSION = 'fc-v0.8.0';
 
 /* Relative paths so the app works from a subdirectory
    (GitHub Pages project sites, /apps/feelings/, etc.) */

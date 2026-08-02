@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1d2748"/>
+      <stop offset="100%" stop-color="#2b3865"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="44%" r="55%">
+      <stop offset="0%" stop-color="#4a5c9c" stop-opacity=".85"/>
+      <stop offset="100%" stop-color="#4a5c9c" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="body" cx="40%" cy="30%">
+      <stop offset="0%" stop-color="#fff7e2"/>
+      <stop offset="46%" stop-color="#ffcf85"/>
+      <stop offset="100%" stop-color="#ff8f4d"/>
+    </radialGradient>
+  </defs>
+  <!-- full bleed background: safe for any mask shape -->
+  <rect width="512" height="512" fill="url(#bg)"/>
+  <circle cx="256" cy="256" r="256" fill="url(#glow)"/>
+  <!-- all content scaled to 72% and centred: stays inside the 80% maskable safe zone -->
+  <g transform="translate(256,256) scale(0.72) translate(-256,-256)">
+    <g transform="translate(256,262) scale(1.42) translate(-100,-104)">
+      <path d="M100 18 c 20 30 34 34 34 58 0 10-6 18-13 23 6-16-4-27-13-31 3 16-9 22-18 30-8-8-16-16-13-30-9 6-16 16-11 31-8-5-14-13-14-23 0-24 14-28 34-58 z"
+            fill="#ffb03a" opacity=".95"/>
+    </g>
+    <ellipse cx="256" cy="285" rx="132" ry="118" fill="url(#body)"/>
+    <path d="M198 272 q22 24 44 0" stroke="#4a1c05" stroke-width="15" fill="none" stroke-linecap="round"/>
+    <path d="M270 272 q22 24 44 0" stroke="#4a1c05" stroke-width="15" fill="none" stroke-linecap="round"/>
+    <path d="M218 330 q38 32 76 0" stroke="#4a1c05" stroke-width="14" fill="none" stroke-linecap="round"/>
+    <circle cx="128" cy="212" r="10" fill="#ffe6b0" opacity=".85"/>
+    <circle cx="392" cy="252" r="8" fill="#ffe6b0" opacity=".75"/>
+  </g>
+</svg>
